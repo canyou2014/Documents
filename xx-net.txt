@@ -1,0 +1,68 @@
+1. windows:
+
+用管理员模式运行start.bat, 会弹出一个配置项，点击X-TUNNEL的Config，注册账号，即可运行。
+###########
+2. ubuntu:
+安装依赖项：
+sudo apt-get install python-openssl
+sudo apt-get install libffi-dev
+sudo apt-get install python-gtk2
+sudo apt-get install python-appindicator
+sudo apt-get install libnss3-tools
+
+
+(1)执行sudo ./start 启动
+(2)点击X-tunnel注册账号
+X-Tunnel:
+(3)Chrome + SwitchOmega模式选择X-Tunnel自动切换。
+(4)X-Tunnel模式的代理ip是127.0.0.1:1080
+GAE:
+
+1. 系统开启ivp6， 同事在XX-net中GAEPROXY的配置中点击开启ivp6，保存配置。
+2. 如果没有导入证书，则删除data文件夹，以root模式运行./start。
+3. 用X-Tunnel申请appid,然后部署。（申请appid https://github.com/XX-net/XX-Net/wiki/how-to-create-my-appids）
+4. 使用，或重启使用。
+##########
+
+
+
+
+
+
+
+
+
+
+
+2. Chrome + SwitchOmega模式：
+
+在chrome中输入chrome://extensions/， 将XX-net/SwitchyOmega/SwitchyOmega.crx拖入其中进行插件安装。
+
+再选择Import/Export中点击Restore from file选择XX-net/SwitchyOmega/OmegaOptions.bak文件。则安装完成。
+
+最后点击chrome右上角的SwitchOmega选择X-Tunnel自动切换，即可翻墙上网。
+
+
+3. 开启ivp6
+(1) linux ： sudo apt install miredo； sudo miredo
+
+(2) win10: 
+
+
+命令行
+以管理员权限打开命令提示符，输入命令
+
+  // 设置 teredo 服务器，默认为：win10.ipv6.microsoft.com
+  netsh interface teredo set state default server=default
+
+  // 重置 ipv6 配置
+  netsh interface ipv6 reset
+重启系统
+
+打开命令提示符，通常 ipconfig /all 命令查看当前网络信息，看到 Teredo Tunneling Pseudo-Interface 有以 2001 开头的地址即可。 启动IE浏览器，访问 http://test-ipv6.com，如果选项卡 “测试项目” 下面的 “不使用域名的 IPv6 测试” 显示成功，则隧道建立成功。chrome浏览器的测试结果可能和IE不一样，请注意
+
+如上面操作后仍无法启用 ipv6，可能是 teredo 服务器无法正常连接，建议修改成其它地址，再检查结果
+
+  //  设置 teredo 服务器为 teredo.remlab.net
+  netsh interface teredo set state server=teredo.remlab.net
+
